@@ -41,10 +41,7 @@ function Steam_api() {
         🕹️
       </button>
       {output.length > 0 && (
-        <div
-          className="mt-2 overflow-auto bg-white border border-gray-300 rounded-lg shadow-lg w-fit"
-          style={{ maxHeight: "200px", maxWidth: "265px", minWidth: "265px" }} // Set a fixed height for the container
-        >
+        <div className="mt-2 overflow-auto bg-white border border-gray-300 rounded-lg shadow-lg w-fit max-h-[200px] max-w-[265px] min-w-[265px]">
           <ul className="justify-center divide-y divide-gray-200">
             {output.map((game, index) => (
               <li key={index} className="px-4 py-3">
