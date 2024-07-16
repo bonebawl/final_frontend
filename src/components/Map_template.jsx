@@ -32,6 +32,7 @@ function Map_template() {
     var temp = await wiki_search(wikiInputValue);
     setWikiOutput(temp);
     console.log(temp);
+    setWikiInputValue("");
     setWikiError("");
     if (temp.length <= 0) {
       setWikiError("N");
