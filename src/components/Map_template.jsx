@@ -42,12 +42,17 @@ function Map_template() {
   };
 
   return (
-    <div className="z-20 flex justify-center align-middle text-center m-auto">
+    <div className="z-20 flex justify-center m-auto text-center align-middle">
       <form onSubmit={handleWikiSubmit}>
-      
-          <h1 className="font-outfit text-white text-center">Search the Web</h1>
-        
-        
+        {first && (
+          <h1 className="text-center text-white font-outfit">Search the Web</h1>
+        )}
+        {wikiError === "N" && (
+          <p className="ml-1 text-base text-red-600 font-outfit">
+            That's not in the web! 🌎
+          </p>
+        )}
+
         <button
           type="submit"
           className="bg-[#46497e] text-white p-2 rounded font-outfit"
@@ -59,23 +64,16 @@ function Map_template() {
           value={wikiInputValue}
           onChange={handleWikiInputChange}
           placeholder="What is: "
-          className="m-2 px-3 py-2 rounded font-outfit text-base w-44"
+          className="px-2 py-2 m-2 text-base text-white rounded font-outfit w-44"
         />
-        {wikiError === "N" && (
-          <p className="text-red-600 ml-1 text-base">
-            That's not in the web! 🌎
-          </p>
-        )}
-
         {wikiOutput.length > 0 && (
           <div
-            className="mt-2 w-fit bg-white border border-gray-300 shadow-lg rounded-lg overflow-auto font-outfit"
-            style={{ maxHeight: "200px", maxWidth: "265px", minWidth: "265px" }} // Set a fixed height for the container
+            className="mt-2 overflow-auto bg-white border border-gray-300 rounded-lg shadow-lg w-fit font-outfit max-h-[200px] max-w-[265px] min-w-[265px]"
           >
             <ul className="divide-y divide-gray-200 font-outfit ">
               {wikiOutput.map((search, index) => (
                 <li key={index} className="px-4 py-3">
-                  <p className="text-sm text-justify">{search.text}...</p>
+                  <p className="text-sm text-justify">{search.text}</p>
                   <a className="text-sm text-red-500" href={search.link}>
                     Click me for more info!
                   </a>
@@ -85,20 +83,34 @@ function Map_template() {
           </div>
         )}
       </form>
-      <h3 className="font-outfit text-white text-center">OR</h3>
+      <h3 className="text-center text-white font-outfit">OR</h3>
       <form onSubmit={handleMapSubmit}>
-        
-          <h1 className="font-outfit text-white text-center">
+        {first && (
+          <h1 className="text-center text-white font-outfit">
             Find schools nearby!
           </h1>
-      
-       
+        )}
+        {mapError === "N" && (
+          <p className="ml-1 text-base text-red-500 font-outfit">
+            That's not in the world! 🌎
+          </p>
+        )}
+        {mapError === "API" && (
+          <p className="ml-1 text-base text-red-500 font-outfit">
+            Server ran out of API uses! 🗲
+          </p>
+        )}
+        {mapError === "undefined" && (
+          <p className="ml-1 text-base text-red-500 font-outfit">
+            That's not in the world! 🌎
+          </p>
+        )}
         <input
           type="text"
           value={mapInputValue}
           onChange={handleMapInputChange}
           placeholder="Search for schools! 🗺️"
-          className="m-2 px-3 py-2 rounded font-outfit text-base w-44"
+          className="px-2 py-2 m-2 text-base text-white rounded font-outfit w-44"
         />
         <button
           type="submit"
@@ -106,25 +118,10 @@ function Map_template() {
         >
           🛰️
         </button>
-        {mapError === "N" && (
-          <p className="text-red-500 ml-1 text-base font-outfit">
-            That's not in the world! 🌎
-          </p>
-        )}
-        {mapError === "API" && (
-          <p className="text-red-500 ml-1 text-base font-outfit">
-            Server ran out of API uses! 🗲
-          </p>
-        )}
-        {mapError === "undefined" && (
-          <p className="text-red-500 ml-1 text-base font-outfit">
-            That's not in the world! 🌎
-          </p>
-        )}
         {mapOutput != undefined && (
           <div
-             className="text-black mt-2 w-fit bg-white border border-gray-300 shadow-lg rounded-lg overflow-auto"
-             style={{ maxHeight: "200px" , maxWidth:"265px", minWidth:"265px"}} // Set a fixed height for the container
+          // className="mt-2 overflow-auto bg-white border border-gray-300 rounded-lg shadow-lg w-fit"
+          // style={{ maxHeight: "200px" , maxWidth:"265px", minWidth:"265px"}} // Set a fixed height for the container
           >
             <ul className="divide-y divide-gray-200 font-outfit">
               {mapOutput.map((map, index) => (
