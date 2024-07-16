@@ -10,7 +10,6 @@ function Sched_template() {
     const savedSchedule = localStorage.getItem("generatedSchedule");
     return savedSchedule ? JSON.parse(savedSchedule) : null;
   });
-  const [first, setFirst] = useState(true);
 
   const timePattern = /^([01]\d|2[0-3]):([0-5]\d)$/;
   const handleSchedInput = (e) => {
@@ -18,7 +17,6 @@ function Sched_template() {
   };
 
   const make = () => {
-    setFirst(false);
     if (schedList.length > 0 && time && typaGuy) {
       const newSchedule = generateSchedule(schedList, time, typaGuy);
       setGeneratedSchedule(newSchedule);
@@ -54,77 +52,103 @@ function Sched_template() {
       setTime("00:00");
     }
   };
-  return(
+  return (
     <div className="z-20">
-        <h1 className="text-3xl font-bold font-outfit m-2 text-white">Random Schedule Maker</h1>
-        {first && (
-          <p className='text-base font-semibold font-outfit m-2 text-white'>Add tasks and determine how much hours/minutes you'll work on it everyday!</p>
-        )}
-        
-        <div className='justify-center flex'>
-            <div>
-            <input
-                type='text'
-                placeholder='Add a task'
-                value = {sched}
-                onChange={handleSchedInput}
-                className = "mb-2 rounded px-2 py-1 text-base font-outfit w-44"
-                ></input>
-                <button className="bg-[#46497e] ml-2 px-3 py-1 rounded text-white font-outfit text-base" onClick={handleSched}>Add</button>
-            </div>
-            <div>
-            <input
-                type='text'
-                placeholder = "HH:MM"
-                pattern="^([01]\d|2[0-3]):([0-5]\d)$"
-                onBlur={handleTimeBlur}
-                onChange = {handleTime}
-                value = {time}
-                className = "mx-2 rounded px-2 py-1 text-base font-outfit w-44"
-                >
-                </input>
-            <select value={typaGuy} placeholder="Day" onChange={handleTypaGuy} className = "mr-2 rounded px-2 py-1 text-base font-outfit">
-                <option value="night">Night</option>
-                <option value="morning">Morning</option>
-                <option value="noon">Noon</option>
-                <option value="afternoon">Afternoon</option>
-            </select>
-            </div>
-            <button onClick={make} className="bg-[#46497e] px-2 py-1 text-base rounded text-white font-outfit mb-2">Generate Schedule</button>
+      <h1 className="m-2 text-3xl font-bold text-white font-outfit">
+        Random Schedule Maker
+      </h1>
+      <p className="m-2 text-base font-semibold text-white font-outfit">
+        Add tasks and determine how much hours/minutes you'll work on it
+        everyday!
+      </p>
+      <div className="flex justify-center">
+        <div>
+          <input
+            type="text"
+            placeholder="Add a task"
+            value={sched}
+            onChange={handleSchedInput}
+            className="px-2 py-1 mb-2 text-base rounded font-outfit w-44"
+          ></input>
+          <button
+            className="bg-[#46497e] ml-2 px-3 py-1 rounded text-white font-outfit text-base"
+            onClick={handleSched}
+          >
+            Add
+          </button>
         </div>
-        {generatedSchedule && (
-           <div className="bg-[#46497e] rounded-lg p-3">
-<h2 className="text-xl text-white font-semibold mb-2 font-outfit">Generated Schedule:</h2>
-<div className="grid grid-cols-3 gap-4 mb-4">
-    {generatedSchedule.slice(0, 3).map(({ day, schedule }) => (
-        <div key={day} className="bg-gray-800 p-3 rounded border-solid border-white border-4 font-outfit">
-            <h3 className="font-semibold font-outfit text-white text-sm">{day}</h3>
-            {schedule.map(({ task, start, end }, index) => (
-                <p key={index} className="text-white text-xs">
+        <div>
+          <input
+            type="text"
+            placeholder="HH:MM"
+            pattern="^([01]\d|2[0-3]):([0-5]\d)$"
+            onBlur={handleTimeBlur}
+            onChange={handleTime}
+            value={time}
+            className="px-2 py-1 mx-2 text-base rounded font-outfit w-44"
+          ></input>
+          <select
+            value={typaGuy}
+            placeholder="Day"
+            onChange={handleTypaGuy}
+            className="px-2 py-1 mr-2 text-base rounded font-outfit"
+          >
+            <option value="night">Night</option>
+            <option value="morning">Morning</option>
+            <option value="noon">Noon</option>
+            <option value="afternoon">Afternoon</option>
+          </select>
+        </div>
+        <button
+          onClick={make}
+          className="bg-[#46497e] px-2 py-1 text-base rounded text-white font-outfit mb-2"
+        >
+          Generate Schedule
+        </button>
+      </div>
+      {generatedSchedule && (
+        <div className="bg-[#46497e] rounded-lg p-3">
+          <h2 className="mb-2 text-xl font-semibold text-white font-outfit">
+            Generated Schedule:
+          </h2>
+          <div className="grid grid-cols-3 gap-4 mb-4">
+            {generatedSchedule.slice(0, 3).map(({ day, schedule }) => (
+              <div
+                key={day}
+                className="p-3 bg-gray-800 border-4 border-white border-solid rounded font-outfit"
+              >
+                <h3 className="text-sm font-semibold text-white font-outfit">
+                  {day}
+                </h3>
+                {schedule.map(({ task, start, end }, index) => (
+                  <p key={index} className="text-xs text-white">
                     [{start} - {end}]: {task}
-                </p>
+                  </p>
+                ))}
+              </div>
             ))}
-        </div>
-    ))}
-</div>
-<div className="grid grid-cols-4 gap-4">
-    {generatedSchedule.slice(3).map(({ day, schedule }) => (
-        <div key={day} className="bg-gray-800 p-4 rounded border-solid border-white border-4 font-outfit">
-            <h3 className="font-semibold text-white text-sm font-outfit">{day}</h3>
-            {schedule.map(({ task, start, end }, index) => (
-                <p key={index} className="text-gray-300 text-xs">
+          </div>
+          <div className="grid grid-cols-4 gap-4">
+            {generatedSchedule.slice(3).map(({ day, schedule }) => (
+              <div
+                key={day}
+                className="p-4 bg-gray-800 border-4 border-white border-solid rounded font-outfit"
+              >
+                <h3 className="text-sm font-semibold text-white font-outfit">
+                  {day}
+                </h3>
+                {schedule.map(({ task, start, end }, index) => (
+                  <p key={index} className="text-xs text-gray-300">
                     [{start} - {end}]: {task}
-                </p>
+                  </p>
+                ))}
+              </div>
             ))}
+          </div>
         </div>
-    ))}
-</div>
-</div>
-         )}
+      )}
     </div>
-);
-
+  );
 }
-
 
 export default Sched_template;
