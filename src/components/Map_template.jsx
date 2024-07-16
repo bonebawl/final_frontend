@@ -99,17 +99,17 @@ function Map_template() {
           🛰️
         </button>
         {mapError === "N" && (
-          <p className="ml-1 text-base text-red-500 font-outfit">
+          <p className="text-center text-base text-red-500 font-outfit">
             That's not in the world! 🌎
           </p>
         )}
         {mapError === "API" && (
-          <p className="ml-1 text-base text-red-500 font-outfit">
+          <p className="text-center text-base text-red-500 font-outfit">
             Server ran out of API uses! 🗲
           </p>
         )}
         {mapError === "undefined" && (
-          <p className="ml-1 text-base text-red-500 font-outfit">
+          <p className="text-center text-base text-red-500 font-outfit">
             That's not in the world! 🌎
           </p>
         )}
