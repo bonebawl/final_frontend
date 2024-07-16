@@ -45,7 +45,7 @@ function Map_template() {
        
         <h1 className="text-center text-white font-outfit">Search the Web</h1>
         
-        {wikiError === "N" && (
+        {wikiOutput.length <= 0 && (
           <p className="ml-1 text-base text-red-600 font-outfit">
             That's not in the web! 🌎
           </p>
