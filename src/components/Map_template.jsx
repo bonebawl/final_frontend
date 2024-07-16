@@ -118,8 +118,8 @@ function Map_template() {
         </button>
         {mapOutput != undefined && (
           <div
-          // className="mt-2 overflow-auto bg-white border border-gray-300 rounded-lg shadow-lg w-fit"
-          // style={{ maxHeight: "200px" , maxWidth:"265px", minWidth:"265px"}} // Set a fixed height for the container
+             className="mt-2 overflow-auto bg-white border border-gray-300 rounded-lg shadow-lg w-fit"
+             style={{ maxHeight: "200px" , maxWidth:"265px", minWidth:"265px"}} // Set a fixed height for the container
           >
             <ul className="divide-y divide-gray-200 font-outfit">
               {mapOutput.map((map, index) => (
