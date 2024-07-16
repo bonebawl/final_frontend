@@ -31,26 +31,21 @@ export default function App() {
   const handleSwitch = (type) => {
     setSwitcher((prev) => {
       const activeCount = Object.values(prev).filter(Boolean).length;
-     
 
       if (prev[type]) {
-        
         setCount((prevCount) => prevCount - 1);
         return { ...prev, [type]: false };
       } else if (activeCount < 2) {
-        
         setCount((prevCount) => prevCount + 1);
         return { ...prev, [type]: true };
       }
 
-    
       return prev;
     });
   };
 
   const isDisabled = (type) => {
     const activeCount = Object.values(switcher).filter(Boolean).length;
-   
     return !switcher[type] && activeCount >= 2;
   };
   document.addEventListener("mousemove", parallax);
@@ -140,7 +135,7 @@ export default function App() {
             </TextWidgets>
           </Widgets>
         </div>
-        <div className="grid grid-rows-2 ">
+        <div className="grid grid-rows-2">
           <div>
             <Widgets
               type="Entertainment"
