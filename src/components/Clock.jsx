@@ -6,7 +6,8 @@ function Clawk_timer() {
     const savedList = localStorage.getItem("todoList");
     return savedList ? JSON.parse(savedList) : [];
   });
-  const [time, setTime] = useState(new Date().toLocaleTimeString()); 
+  const [time, setTime] = useState(new Date().toLocaleTimeString());
+
   useEffect(() => {
     const savedList = JSON.parse(localStorage.getItem("todoList"));
     if (savedList) {
@@ -28,14 +29,13 @@ function Clawk_timer() {
 
   const handleAdd = () => {
     const currentTime = new Date();
-    let [inputHours, inputMinutes] = inputTime.split(":");
-    inputHours = inputHours.padStart(2, '0');
+    const [inputHours, inputMinutes] = inputTime.split(":");
     const taskTime = new Date();
     taskTime.setHours(inputHours, inputMinutes, 0, 0);
-    
+
     if (
       taskTime < currentTime ||
-      !inputTime.match(/^([0-9]|0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$/)
+      !inputTime.match(/^([01]\d|2[0-3]):([0-5]\d)$/)
     ) {
       setInputTime("00:00");
     } else {
@@ -46,11 +46,9 @@ function Clawk_timer() {
       }
     }
   };
-
   const handleInputString = (e) => {
     setInputString(e.target.value);
   };
-
   const handleRemove = (index) => {
     setList(list.filter((_, i) => i !== index));
   };
@@ -59,9 +57,9 @@ function Clawk_timer() {
     let value = e.target.value;
     if (value.length === 1 && parseInt(value, 10) <= 2) {
       setInputTime(value);
-    } else if (value.length === 2 && !value.includes(':')) {
+    } else if (value.length === 2 && !value.includes(":")) {
       if (parseInt(value, 10) <= 23) {
-        setInputTime(value + ':');
+        setInputTime(value + ":");
       }
     } else {
       setInputTime(value);
@@ -76,34 +74,36 @@ function Clawk_timer() {
         const taskTime = new Date();
         taskTime.setHours(taskHours, taskMinutes, 0, 0);
         if (taskTime < currentTime) {
-          alert("TIMER! TIMER! TIMER! TIMER! TIMER!!!")
+          alert("TIMER! TIMER! TIMER! TIMER! TIMER!!!");
           return false;
         }
         return true;
-      })
+      }),
     );
   };
 
   return (
     <div className="App">
-      <h1 className="text-2xl font-bold mt-2 mb-2 text-white">
+      <h1 className="mt-2 mb-2 text-2xl font-bold text-white font-outfit">
         To-Do List
       </h1>
-
+      <p className="m-2 text-base font-semibold text-white font-outfit">
+        This to-do list utilizes the 24-hour time format.
+      </p>
       <div className="todo">
         <input
           type="text"
           value={inputString}
           onChange={handleInputString}
           placeholder="Add a new task"
-          className="mr-2 rounded px-2 py-1 text-base font-outfit w-44"
+          className="px-2 py-1 mr-2 text-base rounded font-outfit w-44"
         />
         <input
           type="text"
           value={inputTime}
           onChange={handleInputTime}
           placeholder="HH:MM"
-          className="mr-2 rounded px-2 py-1 text-base font-outfit w-44"
+          className="px-2 py-1 mr-2 text-base rounded font-outfit w-44"
         />
         <button
           onClick={handleAdd}
@@ -111,7 +111,7 @@ function Clawk_timer() {
         >
           Add to List
         </button>
-        <ul className="list-none p-0">
+        <ul className="p-0 list-none">
           {list
             .sort((a, b) => {
               const timeA = new Date(`1970-01-01T${a.time}`);
@@ -119,11 +119,14 @@ function Clawk_timer() {
               return timeA - timeB;
             })
             .map((item, index) => (
-              <li key={index} className="my-2 flex justify-between items-center font-outfit text-white">
+              <li
+                key={index}
+                className="flex items-center justify-between my-2 text-white font-outfit"
+              >
                 {item.text} - {item.time}
                 <button
                   onClick={() => handleRemove(index)}
-                  className="bg-red-500 rounded text-base font-outfit text-white px-3 py-1"
+                  className="px-3 py-1 text-base text-white bg-red-500 rounded font-outfit"
                 >
                   Remove
                 </button>
@@ -131,7 +134,6 @@ function Clawk_timer() {
             ))}
         </ul>
       </div>
-
     </div>
   );
 }
