@@ -6,7 +6,7 @@ function Sched_template() {
   const [schedList, setSchedList] = useState([]);
   const [time, setTime] = useState("");
   const [typaGuy, setTypaGuy] = useState("Night");
-  const [taskAddedMessage, setTaskAddedMessage] = useState(false); // New state variable for the message
+  const [taskAddedMessage, setTaskAddedMessage] = useState(false); 
   const [generatedSchedule, setGeneratedSchedule] = useState(() => {
     const savedSchedule = localStorage.getItem("generatedSchedule");
     return savedSchedule ? JSON.parse(savedSchedule) : null;
@@ -49,9 +49,9 @@ function Sched_template() {
     if (sched.trim()) {
       setSchedList([...schedList, sched.trim()]);
       setSched("");
-      setTaskAddedMessage(true); // Show the message when a task is added
+      setTaskAddedMessage(true); 
       setTimeout(() => {
-        setTaskAddedMessage(false); // Hide the message after 2 seconds
+        setTaskAddedMessage(false);
       }, 2000);
     }
   };
