@@ -107,7 +107,7 @@ function Sched_template() {
         </button>
       </div>
       {generatedSchedule && (
-        <div className="bg-[#46497e] rounded-lg p-3">
+        <div className="m-2 bg-[#46497e] rounded-lg p-3">
           <h2 className="mb-2 text-xl font-semibold text-white font-outfit">
             Generated Schedule:
           </h2>
