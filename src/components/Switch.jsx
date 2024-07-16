@@ -1,8 +1,15 @@
-export default function Switch({isOn, onChange, disabled }) {
-    return (
-      <label className={`switch absolute top-4 right-4 ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}>
-        <input type="checkbox" checked={isOn} onChange={onChange} disabled={disabled} />
-        <span className="slider round"></span>
-      </label>
-    );
-  }
+export default function Switch({ isOn, onChange, disabled }) {
+  return (
+    <label
+      className={`switch z-[9999] absolute top-4 right-4 ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
+    >
+      <input
+        type="checkbox"
+        checked={isOn}
+        onChange={onChange}
+        disabled={disabled}
+      />
+      <span className="slider round"></span>
+    </label>
+  );
+}
