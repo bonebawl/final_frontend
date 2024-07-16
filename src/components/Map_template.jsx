@@ -85,7 +85,19 @@ function Map_template() {
           <h1 className="text-center text-white font-outfit">
             Find schools nearby!
           </h1>
-     
+        <input
+          type="text"
+          value={mapInputValue}
+          onChange={handleMapInputChange}
+          placeholder="Search for schools! 🗺️"
+          className="px-2 py-2 m-2 text-base rounded font-outfit w-44"
+        />
+        <button
+          type="submit"
+          className="bg-[#46497e] text-white p-2 rounded font-outfit"
+        >
+          🛰️
+        </button>
         {mapError === "N" && (
           <p className="ml-1 text-base text-red-500 font-outfit">
             That's not in the world! 🌎
@@ -101,19 +113,6 @@ function Map_template() {
             That's not in the world! 🌎
           </p>
         )}
-        <input
-          type="text"
-          value={mapInputValue}
-          onChange={handleMapInputChange}
-          placeholder="Search for schools! 🗺️"
-          className="px-2 py-2 m-2 text-base rounded font-outfit w-44"
-        />
-        <button
-          type="submit"
-          className="bg-[#46497e] text-white p-2 rounded font-outfit"
-        >
-          🛰️
-        </button>
         {mapOutput != undefined && (
           <div
              className="mt-2 overflow-auto bg-white border border-gray-300 rounded-lg shadow-lg w-fit"
