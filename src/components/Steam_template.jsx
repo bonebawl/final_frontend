@@ -22,7 +22,7 @@ function Steam_api() {
   return (
     <form onSubmit={handleSubmit} className="z-10 w-fit">
       {error && (
-        <p className="ml-1 text-base text-red-600 font-outfit">
+        <p className="mb-2 text-base text-red-600 font-outfit">
           Error getting that ☹
         </p>
       )}
