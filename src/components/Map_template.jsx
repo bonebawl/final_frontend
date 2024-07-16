@@ -8,7 +8,6 @@ function Map_template() {
   const [wikiOutput, setWikiOutput] = useState([]);
   const [mapError, setMapError] = useState("");
   const [wikiError, setWikiError] = useState("");
-  const [first, setFirst] = useState(true);
 
   const handleMapInputChange = (e) => {
     setMapInputValue(e.target.value);
@@ -27,7 +26,6 @@ function Map_template() {
       setMapError("undefined");
     }
 
-    setFirst(false);
   };
   const handleWikiSubmit = async (e) => {
     e.preventDefault();
@@ -44,9 +42,9 @@ function Map_template() {
   return (
     <div className="z-20 flex justify-center m-auto text-center align-middle">
       <form onSubmit={handleWikiSubmit}>
-        {first && (
-          <h1 className="text-center text-white font-outfit">Search the Web</h1>
-        )}
+       
+        <h1 className="text-center text-white font-outfit">Search the Web</h1>
+        
         {wikiError === "N" && (
           <p className="ml-1 text-base text-red-600 font-outfit">
             That's not in the web! 🌎
@@ -83,11 +81,11 @@ function Map_template() {
       </form>
       <h3 className="text-center text-white font-outfit">OR</h3>
       <form onSubmit={handleMapSubmit}>
-        {first && (
+
           <h1 className="text-center text-white font-outfit">
             Find schools nearby!
           </h1>
-        )}
+     
         {mapError === "N" && (
           <p className="ml-1 text-base text-red-500 font-outfit">
             That's not in the world! 🌎
