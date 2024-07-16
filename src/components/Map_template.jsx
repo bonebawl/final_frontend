@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import map_search from "../js_files/map_api.js";
 import wiki_search from "../js_files/wikipedia_api.js";
-
 function Map_template() {
   const [mapInputValue, setMapInputValue] = useState("");
   const [mapOutput, setMapOutput] = useState([]);
@@ -13,7 +12,6 @@ function Map_template() {
   const handleMapInputChange = (e) => {
     setMapInputValue(e.target.value);
   };
-
   const handleWikiInputChange = (e) => {
     setWikiInputValue(e.target.value);
   };
@@ -27,8 +25,8 @@ function Map_template() {
     if (temp == undefined) {
       setMapError("undefined");
     }
-  };
 
+  };
   const handleWikiSubmit = async (e) => {
     e.preventDefault();
     var temp = await wiki_search(wikiInputValue);
@@ -44,12 +42,15 @@ function Map_template() {
   return (
     <div className="z-20 flex justify-center m-auto text-center align-middle">
       <form onSubmit={handleWikiSubmit}>
+       
         <h1 className="text-center text-white font-outfit">Search the Web</h1>
+        
         {wikiError === "N" && (
           <p className="ml-1 text-base text-red-600 font-outfit">
             That's not in the web! 🌎
           </p>
         )}
+
         <button
           type="submit"
           className="bg-[#46497e] text-white p-2 rounded font-outfit"
@@ -65,7 +66,7 @@ function Map_template() {
         />
         {wikiOutput.length > 0 && (
           <div className="mt-2 overflow-auto bg-white border border-gray-300 rounded-lg shadow-lg w-fit font-outfit max-h-[200px] max-w-[265px] min-w-[265px]">
-            <ul className="divide-y divide-gray-200 font-outfit">
+            <ul className="divide-y divide-gray-200 font-outfit ">
               {wikiOutput.map((search, index) => (
                 <li key={index} className="px-4 py-3">
                   <p className="text-sm text-justify">{search.text}</p>
@@ -80,15 +81,16 @@ function Map_template() {
       </form>
       <h3 className="text-center text-white font-outfit">OR</h3>
       <form onSubmit={handleMapSubmit}>
-        <h1 className="text-center text-white font-outfit">
-          Find schools nearby!
-        </h1>
+
+          <h1 className="text-center text-white font-outfit">
+            Find schools nearby!
+          </h1>
         <input
           type="text"
           value={mapInputValue}
           onChange={handleMapInputChange}
           placeholder="Search for schools! 🗺️"
-          className="px-2 py-2 m-2 text-base rounded font-outfit w-44 no-underline"
+          className="px-2 py-2 m-2 text-base rounded font-outfit w-44"
         />
         <button
           type="submit"
@@ -113,8 +115,8 @@ function Map_template() {
         )}
         {mapOutput != undefined && (
           <div
-            className="mt-2 overflow-auto bg-white border border-gray-300 rounded-lg shadow-lg w-fit"
-            style={{ maxHeight: "200px", maxWidth: "265px", minWidth: "265px" }}
+             className="mt-2 overflow-auto bg-white border border-gray-300 rounded-lg shadow-lg w-fit"
+             style={{ maxHeight: "200px" , maxWidth:"265px", minWidth:"265px"}} // Set a fixed height for the container
           >
             <ul className="divide-y divide-gray-200 font-outfit">
               {mapOutput.map((map, index) => (
@@ -133,5 +135,3 @@ function Map_template() {
     </div>
   );
 }
-
-export default Map_template;
