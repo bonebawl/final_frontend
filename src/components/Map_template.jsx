@@ -64,12 +64,10 @@ function Map_template() {
           value={wikiInputValue}
           onChange={handleWikiInputChange}
           placeholder="What is: "
-          className="px-2 py-2 m-2 text-base text-white rounded font-outfit w-44"
+          className="px-2 py-2 m-2 text-base rounded font-outfit w-44"
         />
         {wikiOutput.length > 0 && (
-          <div
-            className="mt-2 overflow-auto bg-white border border-gray-300 rounded-lg shadow-lg w-fit font-outfit max-h-[200px] max-w-[265px] min-w-[265px]"
-          >
+          <div className="mt-2 overflow-auto bg-white border border-gray-300 rounded-lg shadow-lg w-fit font-outfit max-h-[200px] max-w-[265px] min-w-[265px]">
             <ul className="divide-y divide-gray-200 font-outfit ">
               {wikiOutput.map((search, index) => (
                 <li key={index} className="px-4 py-3">
@@ -110,7 +108,7 @@ function Map_template() {
           value={mapInputValue}
           onChange={handleMapInputChange}
           placeholder="Search for schools! 🗺️"
-          className="px-2 py-2 m-2 text-base text-white rounded font-outfit w-44"
+          className="px-2 py-2 m-2 text-base rounded font-outfit w-44"
         />
         <button
           type="submit"
