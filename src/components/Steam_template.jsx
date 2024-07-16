@@ -22,9 +22,10 @@ function Steam_api() {
   return (
     <form onSubmit={handleSubmit} className="z-10 w-fit">
       {error && (
-        <p className="ml-1 text-base text-red-600">Error getting that ☹</p>
+        <p className="ml-1 text-base text-red-600 font-outfit">
+          Error getting that ☹
+        </p>
       )}
-      <h1 className="text-3xl font-bold font-outfit m-2 text-white">Steam Game Finder!</h1>
       <input
         type="text"
         value={inputValue}
