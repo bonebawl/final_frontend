@@ -6,6 +6,7 @@ function Sched_template() {
   const [schedList, setSchedList] = useState([]);
   const [time, setTime] = useState("");
   const [typaGuy, setTypaGuy] = useState("Night");
+  const [taskAddedMessage, setTaskAddedMessage] = useState(false); // New state variable for the message
   const [generatedSchedule, setGeneratedSchedule] = useState(() => {
     const savedSchedule = localStorage.getItem("generatedSchedule");
     return savedSchedule ? JSON.parse(savedSchedule) : null;
@@ -26,6 +27,7 @@ function Sched_template() {
       );
     }
   };
+
   useEffect(() => {
     if (generatedSchedule) {
       localStorage.setItem(
@@ -34,6 +36,7 @@ function Sched_template() {
       );
     }
   }, [generatedSchedule]);
+
   const handleTypaGuy = (e) => {
     setTypaGuy(e.target.value);
   };
@@ -41,17 +44,24 @@ function Sched_template() {
   const handleTime = (e) => {
     setTime(e.target.value);
   };
+
   const handleSched = () => {
     if (sched.trim()) {
       setSchedList([...schedList, sched.trim()]);
       setSched("");
+      setTaskAddedMessage(true); // Show the message when a task is added
+      setTimeout(() => {
+        setTaskAddedMessage(false); // Hide the message after 2 seconds
+      }, 2000);
     }
   };
+
   const handleTimeBlur = () => {
     if (!time.match(timePattern)) {
       setTime("00:00");
     }
   };
+
   return (
     <div className="z-20">
       <h1 className="m-2 text-3xl font-bold text-white font-outfit">
@@ -106,6 +116,11 @@ function Sched_template() {
           Generate Schedule
         </button>
       </div>
+      {taskAddedMessage && (
+        <p className="m-2 text-green-500 font-outfit">
+          Task Added Successfully
+        </p>
+      )}
       {generatedSchedule && (
         <div className="mx-2 bg-[#46497e] rounded-lg p-3">
           <h2 className="mb-2 text-xl font-semibold text-white font-outfit">
