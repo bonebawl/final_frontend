@@ -179,10 +179,6 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-.placeholder-padding {
-  padding-left: 5px; /* or any other padding you need */
-}
-
 input {
   outline: none;
 }
