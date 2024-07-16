@@ -21,9 +21,7 @@ function Steam_api() {
 
   return (
     <form onSubmit={handleSubmit} className="z-10 w-fit">
-      <h1 className="mb-2 text-2xl font-bold text-white font-outfit">
-        Steam Game Finder
-      </h1>
+      <h1 className="text-center text-white font-outfit">Steam Game Finder</h1>
       {error && (
         <p className="mb-2 text-base text-red-600 font-outfit">
           Error getting that ☹
