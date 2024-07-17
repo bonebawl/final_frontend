@@ -67,6 +67,7 @@ function Sched_template() {
       <h1 className="m-2 text-3xl font-bold text-white font-outfit">
         Random Schedule Maker
       </h1>
+      
       <p className="mb-4 text-base font-semibold text-white font-outfit">
         Add tasks and determine how much hours/minutes you'll work on it
         everyday!
